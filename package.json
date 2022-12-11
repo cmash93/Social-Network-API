@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/cmash93/Social-Network-API#readme",
   "dependencies": {
+    "date-and-time": "^2.4.1",
     "express": "^4.17.1",
     "mongoose": "6.0.13"
   },
