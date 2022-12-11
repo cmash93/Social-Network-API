@@ -4,8 +4,8 @@
   "description": "Database API for a social network web application",
   "main": "index.js",
   "scripts": {
-    "start": "node index",
-    "dev": "nodemon index",
+    "start": "node server",
+    "dev": "nodemon server",
     "seed": "node utils/seed",
     "heroku-postbuild": "node utils/seed.js"
   },
@@ -20,7 +20,6 @@
   },
   "homepage": "https://github.com/cmash93/Social-Network-API#readme",
   "dependencies": {
-    "date-and-time": "^2.4.1",
     "express": "^4.17.1",
     "mongoose": "6.0.13"
   },

@@ -20,14 +20,15 @@ const reactionSchema = new Schema(
             default: Date.now,
             get: (timestamp) => {
                 var date = new Date(timestamp);
-                return date.toLocaleDateString();
+                return date.toLocaleString();
             }
         }
     },
     {
         toJSON: {
             getters: true
-        }
+        },
+        id: false
     }
 );
 
@@ -43,7 +44,7 @@ const thoughtSchema = new Schema(
             default: Date.now,
             get: (timestamp) => {
                 var date = new Date(timestamp);
-                return date.toLocaleDateString();
+                return date.toLocaleString();
             }
         },
         username: {
@@ -61,7 +62,7 @@ const thoughtSchema = new Schema(
     }
 );
 
-thoughtSchema.virtual('reactionCount').get(() => {
+thoughtSchema.virtual('reactionCount').get(function() {
     return this.reactions.length;
 });
 

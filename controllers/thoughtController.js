@@ -3,18 +3,16 @@ const { User, Thought } = require('../models');
 module.exports = {
 
     getThoughts(req, res) {
-        Thought.find({}) // do I need these curly brackets?
-        .populate({
-            path: 'reactions',
-            select: '-__v'
-        })
+        Thought.find()
         .then((thoughts) => res.json(thoughts))
-        .catch((err) => res.status(500).json(err))
+        .catch((err) => {
+            console.log(err)
+            res.status(500).json(err)
+        })
     },
 
     getSingleThought(req, res) {
         Thought.findOne({ _id: req.params.thoughtId })
-        .select('-__v')
         .then((thought) => 
             !thought
             ? res.status(404).json({ message: 'No thought found.' })
@@ -32,10 +30,10 @@ module.exports = {
                 { new: true }
             )
         })
-        .then((thought) => 
-            !thought
+        .then((user) => 
+            !user
             ? res.status(404).json({ message: 'Thought created but no user found.' })
-            : res.json(thought)
+            : res.json({ message: 'Thought successfully created!' })
         )
         .catch((err) => {
             console.log(err);
@@ -101,7 +99,7 @@ module.exports = {
         .then((thought) =>
             !thought
             ? res.status(404).json({ message: 'No thought or reaction found matching that ID.' })
-            : res.json(thought)
+            : res.json({ message: 'Reaction successfully deleted!' })
         )
         .catch((err) => res.status(500).json(err))
     }
