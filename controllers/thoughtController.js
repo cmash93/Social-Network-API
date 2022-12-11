@@ -2,7 +2,7 @@ const { User, Thought } = require('../models');
 
 module.exports = {
 
-    getAllThoughts(req, res) {
+    getThoughts(req, res) {
         Thought.find({}) // do I need these curly brackets?
         .populate({
             path: 'reactions',
